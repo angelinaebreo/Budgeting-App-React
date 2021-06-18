@@ -45,10 +45,10 @@ function App() {
         <Navbar />
         <Switch>
           <Route exact path="/"> <Home /> </Route>
+          <Route path="/transactions/new"> <New addTransaction={addTransaction} /> </Route>
+          <Route path="/transactions/:id"> <Show transactions={transactions} deleteTransaction={deleteTransaction} /> </Route>
+          <Route path="/transactions/:id/edit"> <Edit transactions={transactions} updateTransaction={updateTransaction} /> </Route>
           <Route path="/transactions"> <Index transactions={transactions} /> </Route>
-          <Route path="/transactions/new"> <New addTransaction={addTransaction}/> </Route>
-          <Route path="/transactions/:id"> <Show transactions={transactions} deleteTransaction={deleteTransaction}/> </Route>
-          <Route path="/transactions/:id/edit"> <Edit transactions={transactions} updateTransaction={updateTransaction}/> </Route>
           <Route path="*"> <FourOFour /> </Route>
         </Switch>
       {/* </Router> */}
