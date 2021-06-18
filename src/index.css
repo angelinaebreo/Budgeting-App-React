@@ -92,10 +92,7 @@ textarea {
   margin: auto;
 }
 
-input[type="checkbox"] {
-  margin: 0;
-  width: 15%;
-}
+
 
 input[type="submit"] {
   width: 30%;
