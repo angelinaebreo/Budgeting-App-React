@@ -6,14 +6,14 @@ export default function Transactions({transactions}) {
     return (
         <div className="">
         <section>
-          <table>
+          <table className="table">
             <thead>
               <tr>
-                <th>Date</th>
-                <th>Name</th>
-                <th>From</th>
-                <th>Amount</th>
-                <th>Notes</th>
+                <th scope="col">Date</th>
+                <th scope="col">Name</th>
+                <th scope="col">From</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Notes</th>
               </tr>
             </thead>
             <tbody>

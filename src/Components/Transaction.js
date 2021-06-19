@@ -5,7 +5,7 @@ export default function Transaction({ transaction, id }) {
     
   return (
     <tr>
-      <td>{transaction.date}</td>
+      <th scope="row">{transaction.date}</th>
 
       <td>
         <Link to={`/transactions/${id}`}>{transaction.name}</Link>

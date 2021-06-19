@@ -7,7 +7,7 @@ function Show({ deleteTransaction, transactions }) {
   const [transaction] = useState(transactions[id]);
   return (
     <div className="Show">
-      <h2>Show</h2>
+      <h2 className='mt-3'>Transaction Details</h2>
       <section>
         <TransactionDetails
           transaction={transaction}

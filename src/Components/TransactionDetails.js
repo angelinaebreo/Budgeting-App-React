@@ -31,26 +31,26 @@ function TransactionDetails(props) {
     history.push("/transactions");
   };
 
-  //   let amount = transaction.amount.toLocaleString("en-US", {
-  //     style: "currency",
-  //     currency: "USD",
-  //   })
+    // let amount = transaction.amount.toLocaleString("en-US", {
+    //   style: "currency",
+    //   currency: "USD",
+    // })
 
   return (
     <div>
-      <table className="transaction-details">
+      <table className="table">
         <thead>
           <tr>
-            <th>Date</th>
-            <th>Name</th>
-            <th>From</th>
-            <th>Amount</th>
-            <th>Notes</th>
+            <th scope="col">Date</th>
+            <th scope="col">Name</th>
+            <th scope="col">From</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Notes</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>{transaction.date}</td>
+            <th scope="row">{transaction.date}</th>
             <td>{transaction.name}</td>
             <td>{transaction.from}</td>
             <td className={transaction.type === "credit" ? "green" : "red"}>

@@ -2,13 +2,16 @@ import { Link } from "react-router-dom";
 
 export default function NavBar() {
   return (
-    <nav className="navbar navbar-light bg-light">
+    <nav className="navbar navbar-light bg-light nav-fill">
      
     
-    
-      <button className="">
+ 
+  <button className="">
         <Link to="/" className="nav-link">Home</Link>
       </button>
+ 
+    
+     
        
 
       <button className="">
