@@ -11,13 +11,14 @@ export default function Transactions({transactions}) {
               <tr>
                 <th>Date</th>
                 <th>Name</th>
+                <th>From</th>
                 <th>Amount</th>
                 <th>Notes</th>
               </tr>
             </thead>
             <tbody>
-              {transactions.map((transaction, index) => {
-                return <Transaction key={uuid()} transaction={transaction} index={index} />;
+              {transactions.map((transaction, id) => {
+                return <Transaction key={uuid()} transaction={transaction} id={id} />;
               })}
             </tbody>
           </table>

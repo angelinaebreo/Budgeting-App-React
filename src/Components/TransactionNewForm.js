@@ -1,39 +1,40 @@
-import React from 'react'
+import React from "react";
 import { useState } from "react";
 import { withRouter } from "react-router-dom";
 
-export default function TransactionNewForm(props) {
-    const [transaction, setTransaction] = useState({
-        name: "", 
-        date: "", 
-        type: "", 
-        amount: 0, 
-        notes: ""
-    })
+function TransactionNewForm(props) {
+  const [transaction, setTransaction] = useState({
+    name: "",
+    date: "",
+    type: "",
+    amount: 0,
+    notes: "",
+  });
 
-    const handleTextChange = (event) => {
-        setTransaction({ ...transaction, [event.target.id]: event.target.value });
-      };
-    
-    //   const handleCheckboxChange = () => {
-    //     setBookmark({ ...bookmark, isFavorite: !bookmark.isFavorite });
-    //   };
-    
-      const handleSubmit = (event) => {
-        event.preventDefault();
-        props.addTransaction(transaction);
-        props.history.push("/transactions");
-      };
+  const handleTextChange = (event) => {
+    setTransaction({ ...transaction, [event.target.id]: event.target.value });
+  };
 
-    return (
-        <div className="New">
+  const handleNumberChange = (event) => {
+    setTransaction({
+      ...transaction,
+      [event.target.id]: parseFloat(event.target.value),
+    });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    props.addTransaction(transaction);
+    props.history.push("/transactions");
+  };
+
+  return (
+    <div className="New">
       <form onSubmit={handleSubmit}>
-
-      <label htmlFor="date">Date:</label>
+        <label htmlFor="date">Date:</label>
         <input
           id="date"
           type="date"
-        
           required
           value={transaction.date}
           placeholder="MM/DD/YYYY"
@@ -49,7 +50,17 @@ export default function TransactionNewForm(props) {
           placeholder="Name"
           required
         />
-       
+
+        <label htmlFor="from">From:</label>
+        <input
+          id="from"
+          value={transaction.from}
+          type="text"
+          onChange={handleTextChange}
+          placeholder="From"
+          required
+        />
+
         <label htmlFor="amount">Amount:</label>
         <input
           id="amount"
@@ -57,9 +68,10 @@ export default function TransactionNewForm(props) {
           name="amount"
           value={transaction.amount}
           placeholder="1,000,000"
-          onChange={handleTextChange}
+          onChange={handleNumberChange}
+          required
         />
-     
+
         <label htmlFor="notes">Notes:</label>
         <textarea
           id="notes"
@@ -72,5 +84,7 @@ export default function TransactionNewForm(props) {
         <input type="submit" />
       </form>
     </div>
-    )
+  );
 }
+
+export default withRouter(TransactionNewForm);

@@ -92,7 +92,9 @@ textarea {
   margin: auto;
 }
 
-
+/* .transaction-details {
+  margin: 25px;
+} */
 
 input[type="submit"] {
   width: 30%;
