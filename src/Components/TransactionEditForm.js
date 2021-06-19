@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { useState, useEffect } from "react";
 import { useParams, Link, useHistory } from "react-router-dom";
 import axios from "axios";
@@ -7,8 +7,7 @@ import { apiURL } from "../util/apiURL";
 const API_BASE = apiURL();
 
 export default function TransactionEditForm(props) {
-
-    let { id } = useParams();
+  let { id } = useParams();
   let history = useHistory();
 
   const [transaction, setTransaction] = useState({});
@@ -26,10 +25,9 @@ export default function TransactionEditForm(props) {
       });
   }, [id, history]);
 
-
   const handleTextChange = (event) => {
     setTransaction({ ...transaction, [event.target.id]: event.target.value });
-    console.log(transaction)
+    console.log(transaction);
   };
 
   const handleNumberChange = (event) => {
@@ -45,65 +43,84 @@ export default function TransactionEditForm(props) {
     history.push(`/transactions/${id}`);
   };
 
-    return (
-        <div className="Edit">
+  return (
+    <div>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="date">Date:</label>
-        <input
-          id="date"
-          type="date"
-          required
-          value={transaction.date}
-          placeholder="MM/DD/YYYY"
-          onChange={handleTextChange}
-        />
+        <div class="row">
+          <div class="col-sm col-lg-4">
+            <label htmlFor="date">Date:</label>
+            <input
+              id="date"
+              type="date"
+              class="form-control"
+              required
+              value={transaction.date}
+              placeholder="MM/DD/YYYY"
+              onChange={handleTextChange}
+            />
+          </div>
+          <div class="col-sm col-lg-4">
+            <label htmlFor="name">Name:</label>
+            <input
+              id="name"
+              value={transaction.name}
+              class="form-control"
+              type="text"
+              onChange={handleTextChange}
+              placeholder="Name"
+              required
+            />
+          </div>
+          <div class="col-sm col-lg-4">
+            <label htmlFor="from">From:</label>
+            <input
+              id="from"
+              value={transaction.from}
+              class="form-control"
+              type="text"
+              onChange={handleTextChange}
+              placeholder="From"
+              required
+            />
+          </div>
+          <div class="col-sm col-lg-4">
+            <label htmlFor="amount">Amount:</label>
+            <input
+              id="amount"
+              type="number"
+              name="amount"
+              class="form-control"
+              value={transaction.amount}
+              placeholder="1,000,000"
+              onChange={handleNumberChange}
+              required
+            />
+          </div>
+          <div class="col-lg col-lg-4">
+            <label htmlFor="notes">Notes:</label>
+            <textarea
+              id="notes"
+              name="notes"
+              class="form-control"
+              value={transaction.notes}
+              onChange={handleTextChange}
+              placeholder="Any notes for this transaction?"
+            />
+          </div>
 
-        <label htmlFor="name">Name:</label>
-        <input
-          id="name"
-          value={transaction.name}
-          type="text"
-          onChange={handleTextChange}
-          placeholder="Name"
-          required
-        />
-
-        <label htmlFor="from">From:</label>
-        <input
-          id="from"
-          value={transaction.from}
-          type="text"
-          onChange={handleTextChange}
-          placeholder="From"
-          required
-        />
-
-        <label htmlFor="amount">Amount:</label>
-        <input
-          id="amount"
-          type="number"
-          name="amount"
-          value={transaction.amount}
-          placeholder="1,000,000"
-          onChange={handleNumberChange}
-          required
-        />
-
-        <label htmlFor="notes">Notes:</label>
-        <textarea
-          id="notes"
-          name="notes"
-          value={transaction.notes}
-          onChange={handleTextChange}
-          placeholder="Any notes for this transaction?"
-        />
-        <br />
-        <input type="submit" />
+          <div class="row mt-3">
+            <div class="col-sm">
+              <input type="submit" class="btn btn-primary" />
+            </div>
+          </div>
+        </div>
       </form>
 
-      <Link to={`/transactions/${id}`}>
-        <button>Cancel</button>
-      </Link>
+      <div class="row mt-3">
+          <Link to={`/transactions/${id}`}>
+            <button class="btn btn-primary">Cancel</button>
+          </Link>
+      </div>
     </div>
-    )
+  );
 }

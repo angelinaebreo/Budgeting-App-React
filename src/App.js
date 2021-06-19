@@ -1,8 +1,8 @@
 import "./App.css";
-
+import "bootstrap/dist/css/bootstrap.min.css";
 import { useState, useEffect } from "react";
 
-import { Router, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import { apiURL } from "./util/apiURL";
 import axios from "axios";
 
@@ -60,8 +60,8 @@ function App() {
   };
 
   const updateTransaction = (updatedTransaction, id) => {
-    console.log("update", updatedTransaction)
-    console.log("id", id)
+    console.log("update", updatedTransaction);
+    console.log("id", id);
     axios
       .put(`${API_BASE}/transactions/${id}`, updatedTransaction)
       .then(
@@ -79,45 +79,47 @@ function App() {
 
   return (
     <div className="App">
-      {/* <Router> */}
       <Navbar />
-      <main>
-        <Switch>
-          <Route exact path="/">
-            {" "}
-            <Home />{" "}
-          </Route>
+      <div className="container">
+        <h1 className="mt-3">Budget App</h1>
+        <main>
+          <Switch>
+            <Route exact path="/">
+              {" "}
+              <Home />{" "}
+            </Route>
 
-          <Route path="/transactions/new">
-            {" "}
-            <New addTransaction={addTransaction} />{" "}
-          </Route>
+            <Route path="/transactions/new">
+              {" "}
+              <New addTransaction={addTransaction} />{" "}
+            </Route>
 
-          <Route path="/transactions/:id/edit">
-            {" "}
-            <Edit
-              transactions={transactions}
-              updateTransaction={updateTransaction}
-            />{" "}
-          </Route>
+            <Route path="/transactions/:id/edit">
+              {" "}
+              <Edit
+                transactions={transactions}
+                updateTransaction={updateTransaction}
+              />{" "}
+            </Route>
 
-          <Route path="/transactions/:id">
-            {" "}
-            <Show
-              transactions={transactions}
-              deleteTransaction={deleteTransaction}
-            />{" "}
-          </Route>
-          <Route path="/transactions">
-            {" "}
-            <Index transactions={transactions} />{" "}
-          </Route>
-          <Route path="*">
-            {" "}
-            <FourOFour />{" "}
-          </Route>
-        </Switch>
-      </main>
+            <Route path="/transactions/:id">
+              {" "}
+              <Show
+                transactions={transactions}
+                deleteTransaction={deleteTransaction}
+              />{" "}
+            </Route>
+            <Route path="/transactions">
+              {" "}
+              <Index transactions={transactions} />{" "}
+            </Route>
+            <Route path="*">
+              {" "}
+              <FourOFour />{" "}
+            </Route>
+          </Switch>
+        </main>
+      </div>
     </div>
   );
 }

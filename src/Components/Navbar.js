@@ -2,15 +2,21 @@ import { Link } from "react-router-dom";
 
 export default function NavBar() {
   return (
-    <nav>
-        <h1>
-        <Link to="/">Home</Link>
-        </h1>
-      <h1>
-        <Link to="/transactions">Transactions</Link>
-      </h1>
-      <button>
-        <Link to="/transactions/new">New Transaction</Link>
+    <nav className="navbar navbar-light bg-light">
+     
+    
+    
+      <button className="">
+        <Link to="/" className="nav-link">Home</Link>
+      </button>
+       
+
+      <button className="">
+        <Link to="/transactions" className="nav-link">Transactions</Link>
+      </button>
+
+      <button className="">
+        <Link to="/transactions/new" className="nav-link">New Transaction</Link>
       </button>
     </nav>
   );

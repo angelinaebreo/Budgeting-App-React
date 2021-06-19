@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Transaction({ transaction, id, key }) {
+export default function Transaction({ transaction, id }) {
     
   return (
     <tr>

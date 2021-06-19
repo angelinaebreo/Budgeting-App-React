@@ -1,16 +1,21 @@
-
 import Transactions from "../Components/Transactions";
-import TotalAmount from "../Components/TotalAmount"
+import SpentSoFar from "../Components/SpentSoFar";
 
 function Index({ transactions }) {
- 
   return (
-    <div className="Index">
-      <h2>Index</h2>
-      <aside>
-        <TotalAmount transactions={transactions}/>
-      </aside>
-      <Transactions transactions={transactions} />
+    <div className="container">
+      <h2>Transactions</h2>
+      <div className="row mt-3">
+        <div className="col-sm">
+          <SpentSoFar transactions={transactions} />
+        </div>
+
+        <div className="row mt-3">
+          <div className="col-sm">
+            <Transactions transactions={transactions} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

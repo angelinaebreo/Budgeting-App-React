@@ -18,7 +18,7 @@ function TransactionDetails(props) {
       .get(`${API_BASE}/transactions/${id}`)
       .then((response) => {
         const { data } = response;
-   
+
         setTransaction(data);
       })
       .catch((e) => {
@@ -31,10 +31,10 @@ function TransactionDetails(props) {
     history.push("/transactions");
   };
 
-//   let amount = transaction.amount.toLocaleString("en-US", {
-//     style: "currency",
-//     currency: "USD",
-//   })
+  //   let amount = transaction.amount.toLocaleString("en-US", {
+  //     style: "currency",
+  //     currency: "USD",
+  //   })
 
   return (
     <div>
@@ -66,23 +66,37 @@ function TransactionDetails(props) {
           </tr>
         </tbody>
       </table>
-<hr />
+      <hr />
       <div className="showNavigation">
         <div>
           {" "}
-          <Link to={`/transactions`}>
-            <button>Back</button>
-          </Link>
+          <div class="row mt-3">
+            <div class="col-sm">
+              <Link to={`/transactions`}>
+                <button class="btn btn-primary">Back</button>
+              </Link>
+            </div>
+          </div>
         </div>
         <div>
           {" "}
-          <Link to={`/transactions/${id}/edit`}>
-            <button>Update</button>
-          </Link>
+          <div class="row mt-3">
+            <div class="col-sm">
+              <Link to={`/transactions/${id}/edit`}>
+                <button class="btn btn-primary">Update</button>
+              </Link>
+            </div>
+          </div>
         </div>
         <div>
           {" "}
-          <button onClick={handleDelete}>Delete</button>
+          <div class="row mt-3">
+            <div class="col-sm">
+              <button onClick={handleDelete} class="btn btn-primary">
+                Delete
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
