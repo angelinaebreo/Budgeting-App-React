@@ -31,10 +31,10 @@ function TransactionDetails(props) {
     history.push("/transactions");
   };
 
-    // let amount = transaction.amount.toLocaleString("en-US", {
-    //   style: "currency",
-    //   currency: "USD",
-    // })
+  // let amount = transaction.amount.toLocaleString("en-US", {
+  //   style: "currency",
+  //   currency: "USD",
+  // })
 
   return (
     <div>

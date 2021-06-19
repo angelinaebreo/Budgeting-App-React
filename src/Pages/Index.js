@@ -23,7 +23,7 @@ function Index({ transactions }) {
       <div className="row mt-3">
         <div className="col-sm">
           <Budget
-          budget={budget}
+            budget={budget}
             handleSaveClick={handleSaveClick}
             handleEditClick={handleEditClick}
             isEditing={isEditing}

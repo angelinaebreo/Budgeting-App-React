@@ -20,7 +20,6 @@ const API_BASE = apiURL();
 function App() {
   const [transactions, setTransactions] = useState([]);
 
-
   useEffect(() => {
     axios.get(`${API_BASE}/transactions`).then((response) => {
       console.log(response);

@@ -117,9 +117,9 @@ export default function TransactionEditForm(props) {
       </form>
 
       <div class="row mt-3">
-          <Link to={`/transactions/${id}`}>
-            <button class="btn btn-primary">Cancel</button>
-          </Link>
+        <Link to={`/transactions/${id}`}>
+          <button class="btn btn-primary">Cancel</button>
+        </Link>
       </div>
     </div>
   );
