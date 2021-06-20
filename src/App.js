@@ -1,19 +1,17 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState, useEffect } from "react";
-
 import { Switch, Route } from "react-router-dom";
-import { apiURL } from "./util/apiURL";
 import axios from "axios";
 
+import { apiURL } from "./util/apiURL";
+import Navbar from "./Components/Navbar";
 import Edit from "./Pages/Edit";
 import FourOFour from "./Pages/FourOFour";
 import Home from "./Pages/Home";
 import Index from "./Pages/Index";
 import New from "./Pages/New";
 import Show from "./Pages/Show";
-
-import Navbar from "./Components/Navbar";
 
 const API_BASE = apiURL();
 
@@ -22,7 +20,7 @@ function App() {
 
   useEffect(() => {
     axios.get(`${API_BASE}/transactions`).then((response) => {
-      console.log(response);
+      //console.log(response);
       const { data } = response;
       setTransactions(data);
     });
@@ -60,8 +58,6 @@ function App() {
   };
 
   const updateTransaction = (updatedTransaction, id) => {
-    console.log("update", updatedTransaction);
-    console.log("id", id);
     axios
       .put(`${API_BASE}/transactions/${id}`, updatedTransaction)
       .then(

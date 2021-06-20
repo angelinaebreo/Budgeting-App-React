@@ -70,29 +70,29 @@ function TransactionDetails(props) {
       <div className="showNavigation">
         <div>
           {" "}
-          <div class="row mt-3">
-            <div class="col-sm">
+          <div className="row mt-3">
+            <div className="col-sm">
               <Link to={`/transactions`}>
-                <button class="btn btn-primary">Back</button>
+                <button className="btn btn-primary">Back</button>
               </Link>
             </div>
           </div>
         </div>
         <div>
           {" "}
-          <div class="row mt-3">
-            <div class="col-sm">
+          <div className="row mt-3">
+            <div className="col-sm">
               <Link to={`/transactions/${id}/edit`}>
-                <button class="btn btn-primary">Update</button>
+                <button className="btn btn-primary">Update</button>
               </Link>
             </div>
           </div>
         </div>
         <div>
           {" "}
-          <div class="row mt-3">
-            <div class="col-sm">
-              <button onClick={handleDelete} class="btn btn-primary">
+          <div className="row mt-3">
+            <div className="col-sm">
+              <button onClick={handleDelete} className="btn btn-primary">
                 Delete
               </button>
             </div>

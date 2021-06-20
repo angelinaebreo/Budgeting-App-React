@@ -4,12 +4,9 @@ import EditBudget from "./EditBudget";
 
 export default function Budget(props) {
   return (
-    <div class="alert alert-secondary p-3 d-flex align-items-center justify-content-between">
+    <div className="alert alert-secondary p-3 d-flex align-items-center justify-content-between">
       {props.isEditing ? (
-        <EditBudget
-          handleSaveClick={props.handleSaveClick}
-          budget={props.budget}
-        />
+        <EditBudget updateBudget={props.updateBudget} budget={props.budget} />
       ) : (
         <ViewBudget
           handleEditClick={props.handleEditClick}
