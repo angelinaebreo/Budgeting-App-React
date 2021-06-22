@@ -18,7 +18,6 @@ function TransactionDetails(props) {
       .get(`${API_BASE}/transactions/${id}`)
       .then((response) => {
         const { data } = response;
-
         setTransaction(data);
       })
       .catch((e) => {
@@ -30,11 +29,6 @@ function TransactionDetails(props) {
     deleteTransaction(id);
     history.push("/transactions");
   };
-
-  // let amount = transaction.amount.toLocaleString("en-US", {
-  //   style: "currency",
-  //   currency: "USD",
-  // })
 
   return (
     <div>

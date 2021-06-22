@@ -1,7 +1,7 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState, useEffect } from "react";
-import { Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import axios from "axios";
 
 import { apiURL } from "./util/apiURL";
@@ -17,13 +17,21 @@ const API_BASE = apiURL();
 
 function App() {
   const [transactions, setTransactions] = useState([]);
+  const [totalSum, setTotalSum] = useState(0);
 
-  useEffect(() => {
-    axios.get(`${API_BASE}/transactions`).then((response) => {
-      //console.log(response);
+  const fetchData = async () => {
+    await axios.get(`${API_BASE}/transactions`).then((response) => {
       const { data } = response;
       setTransactions(data);
     });
+    await axios.get(`${API_BASE}/total`).then((response) => {
+      const { data } = response;
+      setTotalSum(data);
+    });
+  };
+
+  useEffect(() => {
+    fetchData();
   }, []);
 
   const addTransaction = (newTransaction) => {
@@ -31,7 +39,11 @@ function App() {
       .post(`${API_BASE}/transactions`, newTransaction)
       .then(
         (response) => {
-          return axios.get(`${API_BASE}/transactions`);
+          axios.get(`${API_BASE}/transactions`);
+          setTransactions((prevTransactions) => [
+            ...prevTransactions,
+            response.data,
+          ]);
         },
         (error) => {
           console.log(error);
@@ -40,13 +52,20 @@ function App() {
       .catch((c) => {
         console.warn("catch", c);
       });
+    axios.get(`${API_BASE}/total`).then((response) => {
+      const { data } = response;
+      setTotalSum(data);
+    });
   };
+
   const deleteTransaction = (id) => {
     axios
       .delete(`${API_BASE}/transactions/${id}`)
       .then(
         (response) => {
-          setTransactions(response.data);
+          const transactionsCopy = [...transactions];
+          transactionsCopy.splice(id, 1);
+          setTransactions(transactionsCopy);
         },
         (error) => {
           console.log(error);
@@ -55,6 +74,10 @@ function App() {
       .catch((c) => {
         console.warn("catch", c);
       });
+    axios.get(`${API_BASE}/total`).then((response) => {
+      const { data } = response;
+      setTotalSum(data);
+    });
   };
 
   const updateTransaction = (updatedTransaction, id) => {
@@ -62,7 +85,9 @@ function App() {
       .put(`${API_BASE}/transactions/${id}`, updatedTransaction)
       .then(
         (response) => {
-          setTransactions(response.data);
+          const transactionsCopy = [...transactions];
+          transactionsCopy[id] = response.data;
+          setTransactions(transactionsCopy);
         },
         (error) => {
           console.log(error);
@@ -71,51 +96,54 @@ function App() {
       .catch((c) => {
         console.warn("catch", c);
       });
+    axios.get(`${API_BASE}/total`).then((response) => {
+      const { data } = response;
+      setTotalSum(data);
+    });
   };
 
   return (
     <div className="App">
-      <Navbar />
-      <div className="container">
-        <h1 className="mt-3">Budget App</h1>
-        <main>
-          <Switch>
-            <Route exact path="/">
-              {" "}
-              <Home />{" "}
-            </Route>
+      <Router>
+        <Navbar />
+        <div className="container">
+          <h1 className="mt-3">Budget App</h1>
+          <main>
+            <Switch>
+              <Route exact path="/">
+                {" "}
+                <Home />{" "}
+              </Route>
 
-            <Route path="/transactions/new">
-              {" "}
-              <New addTransaction={addTransaction} />{" "}
-            </Route>
+              <Route path="/transactions/new">
+                {" "}
+                <New addTransaction={addTransaction} />{" "}
+              </Route>
 
-            <Route path="/transactions/:id/edit">
-              {" "}
-              <Edit
-                transactions={transactions}
-                updateTransaction={updateTransaction}
-              />{" "}
-            </Route>
+              <Route path="/transactions/:id/edit">
+                {" "}
+                <Edit updateTransaction={updateTransaction} />{" "}
+              </Route>
 
-            <Route path="/transactions/:id">
-              {" "}
-              <Show
-                transactions={transactions}
-                deleteTransaction={deleteTransaction}
-              />{" "}
-            </Route>
-            <Route path="/transactions">
-              {" "}
-              <Index transactions={transactions} />{" "}
-            </Route>
-            <Route path="*">
-              {" "}
-              <FourOFour />{" "}
-            </Route>
-          </Switch>
-        </main>
-      </div>
+              <Route path="/transactions/:id">
+                {" "}
+                <Show
+                  transactions={transactions}
+                  deleteTransaction={deleteTransaction}
+                />{" "}
+              </Route>
+              <Route path="/transactions">
+                {" "}
+                <Index transactions={transactions} totalSum={totalSum} />{" "}
+              </Route>
+              <Route path="*">
+                {" "}
+                <FourOFour />{" "}
+              </Route>
+            </Switch>
+          </main>
+        </div>
+      </Router>
     </div>
   );
 }

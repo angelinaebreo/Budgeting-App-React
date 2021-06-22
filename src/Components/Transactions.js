@@ -17,11 +17,12 @@ export default function Transactions({ transactions }) {
             </tr>
           </thead>
           <tbody>
-            {transactions.map((transaction, id) => {
-              return (
-                <Transaction key={uuid()} transaction={transaction} id={id} />
-              );
-            })}
+            {transactions &&
+              transactions.map((transaction, id) => {
+                return (
+                  <Transaction key={uuid()} transaction={transaction} id={id} />
+                );
+              })}
           </tbody>
         </table>
       </section>

@@ -32,7 +32,7 @@ function TransactionNewForm(props) {
     <div>
       <form onSubmit={handleSubmit}>
         <div className="row">
-          <div className="col-sm col-lg-4">
+          <div className="col-sm col-lg-3">
             <label htmlFor="date">Date:</label>
             <input
               id="date"
@@ -44,7 +44,7 @@ function TransactionNewForm(props) {
               onChange={handleTextChange}
             />
           </div>
-          <div className="col-md col-lg-4">
+          <div className="col-md col-lg-3">
             <label htmlFor="name">Name:</label>
             <input
               id="name"
@@ -56,7 +56,7 @@ function TransactionNewForm(props) {
               required
             />
           </div>
-          <div className="col-sm col-lg-4">
+          <div className="col-sm col-lg-3">
             <label htmlFor="from">From:</label>
             <input
               id="from"
@@ -68,12 +68,13 @@ function TransactionNewForm(props) {
               required
             />
           </div>
-          <div className="col-sm col-lg-4">
+          <div className="col-sm col-lg-3">
             <label htmlFor="amount">Amount:</label>
             <input
               id="amount"
               type="number"
               name="amount"
+              step="0.01"
               className="form-control"
               value={transaction.amount}
               placeholder="1,000,000"
@@ -81,7 +82,7 @@ function TransactionNewForm(props) {
               required
             />
           </div>
-          <div className="col-lg col-lg-4">
+          <div className="col-lg col-lg-12">
             <label htmlFor="notes">Notes:</label>
             <textarea
               id="notes"

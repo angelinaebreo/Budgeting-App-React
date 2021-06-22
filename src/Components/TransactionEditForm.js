@@ -10,14 +10,19 @@ export default function TransactionEditForm(props) {
   let { id } = useParams();
   let history = useHistory();
 
-  const [transaction, setTransaction] = useState({});
+  const [transaction, setTransaction] = useState({
+    name: "",
+    from: "",
+    date: "",
+    amount: 0,
+    notes: "",
+  });
 
   useEffect(() => {
     axios
       .get(`${API_BASE}/transactions/${id}`)
       .then((response) => {
         const { data } = response;
-        console.log(data);
         setTransaction(data);
       })
       .catch((e) => {
@@ -47,7 +52,7 @@ export default function TransactionEditForm(props) {
     <div>
       <form onSubmit={handleSubmit}>
         <div className="row">
-          <div className="col-sm col-lg-4">
+          <div className="col-sm col-lg-3">
             <label htmlFor="date">Date:</label>
             <input
               id="date"
@@ -59,7 +64,7 @@ export default function TransactionEditForm(props) {
               onChange={handleTextChange}
             />
           </div>
-          <div className="col-sm col-lg-4">
+          <div className="col-sm col-lg-3">
             <label htmlFor="name">Name:</label>
             <input
               id="name"
@@ -71,7 +76,7 @@ export default function TransactionEditForm(props) {
               required
             />
           </div>
-          <div className="col-sm col-lg-4">
+          <div className="col-sm col-lg-3">
             <label htmlFor="from">From:</label>
             <input
               id="from"
@@ -83,12 +88,13 @@ export default function TransactionEditForm(props) {
               required
             />
           </div>
-          <div className="col-sm col-lg-4">
+          <div className="col-sm col-lg-3">
             <label htmlFor="amount">Amount:</label>
             <input
               id="amount"
               type="number"
               name="amount"
+              step="0.01"
               className="form-control"
               value={transaction.amount}
               placeholder="1,000,000"
@@ -96,7 +102,7 @@ export default function TransactionEditForm(props) {
               required
             />
           </div>
-          <div className="col-lg col-lg-4">
+          <div className="col-lg col-lg-12">
             <label htmlFor="notes">Notes:</label>
             <textarea
               id="notes"

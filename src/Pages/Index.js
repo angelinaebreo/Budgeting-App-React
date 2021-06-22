@@ -9,13 +9,12 @@ import { useState, useEffect } from "react";
 
 const API_BASE = apiURL();
 
-function Index({ transactions }) {
+function Index({ transactions, totalSum }) {
   const [budget, setBudget] = useState(0);
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     axios.get(`${API_BASE}/budget`).then((response) => {
-      console.log(response.data);
       const { data } = response;
       setBudget(Number(data[0].budget));
     });
@@ -27,16 +26,12 @@ function Index({ transactions }) {
 
   const updateBudget = (value) => {
     const budgetObj = { budget: value };
-    //console.log(budgetObj)
     setIsEditing(false);
     axios
       .put(`${API_BASE}/budget`, budgetObj)
       .then(
         (response) => {
-          console.log(response.data)
           setBudget(Number(response.data[0].budget));
-
-      
         },
         (error) => {
           console.log(error);
@@ -61,16 +56,16 @@ function Index({ transactions }) {
         </div>
 
         <div className="col-sm">
-          <Remaining transactions={transactions} budget={budget} />
+          <Remaining budget={budget} totalSum={totalSum} />
         </div>
 
         <div className="col-sm">
-          <SpentSoFar transactions={transactions} budget={budget} />
+          <SpentSoFar totalSum={totalSum} />
         </div>
 
         <div className="row mt-3">
           <div className="col-sm">
-            <Transactions transactions={transactions} budget={budget} />
+            <Transactions transactions={transactions} />
           </div>
         </div>
       </div>

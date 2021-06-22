@@ -1,15 +1,17 @@
 import React from "react";
 
-export default function SpentSoFar({ transactions }) {
-  const total = transactions.reduce((a, b) => a + parseFloat(b.amount), 0);
-
+export default function SpentSoFar({ totalSum }) {
   return (
     <div className="alert alert-primary p-4">
-      Spent so far:{" "}
-      {total.toLocaleString("en-US", {
-        style: "currency",
-        currency: "USD",
-      })}
+      {totalSum < 0
+        ? `Total expenses: ${totalSum.toLocaleString("en-US", {
+            style: "currency",
+            currency: "USD",
+          })}`
+        : `Positive balance: ${totalSum.toLocaleString("en-US", {
+            style: "currency",
+            currency: "USD",
+          })}`}
     </div>
   );
 }

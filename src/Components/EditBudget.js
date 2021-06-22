@@ -4,11 +4,7 @@ const EditBudget = (props) => {
   const [value, setValue] = useState(props.budget);
 
   const handleTextChange = (event) => {
-    //console.log(event.target)
     setValue(parseFloat(event.target.value));
-
-   
-    //console.log(value);
   };
 
   const handleSubmit = (event) => {
