@@ -17,17 +17,14 @@ const API_BASE = apiURL();
 
 function App() {
   const [transactions, setTransactions] = useState([]);
-  const [totalSum, setTotalSum] = useState(0);
+  
 
   const fetchData = async () => {
     await axios.get(`${API_BASE}/transactions`).then((response) => {
       const { data } = response;
       setTransactions(data);
     });
-    await axios.get(`${API_BASE}/total`).then((response) => {
-      const { data } = response;
-      setTotalSum(data);
-    });
+   
   };
 
   useEffect(() => {
@@ -52,10 +49,7 @@ function App() {
       .catch((c) => {
         console.warn("catch", c);
       });
-    axios.get(`${API_BASE}/total`).then((response) => {
-      const { data } = response;
-      setTotalSum(data);
-    });
+   
   };
 
   const deleteTransaction = (id) => {
@@ -74,10 +68,7 @@ function App() {
       .catch((c) => {
         console.warn("catch", c);
       });
-    axios.get(`${API_BASE}/total`).then((response) => {
-      const { data } = response;
-      setTotalSum(data);
-    });
+ 
   };
 
   const updateTransaction = (updatedTransaction, id) => {
@@ -96,10 +87,7 @@ function App() {
       .catch((c) => {
         console.warn("catch", c);
       });
-    axios.get(`${API_BASE}/total`).then((response) => {
-      const { data } = response;
-      setTotalSum(data);
-    });
+  
   };
 
   return (
@@ -134,7 +122,7 @@ function App() {
               </Route>
               <Route path="/transactions">
                 {" "}
-                <Index transactions={transactions} totalSum={totalSum} />{" "}
+                <Index transactions={transactions} />{" "}
               </Route>
               <Route path="*">
                 {" "}

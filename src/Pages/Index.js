@@ -9,16 +9,21 @@ import { useState, useEffect } from "react";
 
 const API_BASE = apiURL();
 
-function Index({ transactions, totalSum }) {
+function Index({ transactions }) {
   const [budget, setBudget] = useState(0);
   const [isEditing, setIsEditing] = useState(false);
+  const [totalSum, setTotalSum] = useState(0);
 
   useEffect(() => {
     axios.get(`${API_BASE}/budget`).then((response) => {
       const { data } = response;
       setBudget(Number(data[0].budget));
     });
-  }, []);
+    axios.get(`${API_BASE}/total`).then((response) => {
+      const { data } = response;
+      setTotalSum(data);
+    });
+  }, [transactions]);
 
   const handleEditClick = () => {
     setIsEditing(true);
