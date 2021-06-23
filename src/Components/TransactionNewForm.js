@@ -6,7 +6,7 @@ function TransactionNewForm(props) {
   const [transaction, setTransaction] = useState({
     name: "",
     date: "",
-    type: "",
+    from: "",
     amount: 0,
     notes: "",
   });

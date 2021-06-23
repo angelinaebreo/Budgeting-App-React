@@ -45,7 +45,7 @@ export default function TransactionEditForm(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     props.updateTransaction(transaction, id);
-    history.push(`/transactions/${id}`);
+    history.push(`/transactions`);
   };
 
   return (
