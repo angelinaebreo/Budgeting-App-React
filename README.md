@@ -1,5 +1,5 @@
 ## Budgeting App
-[Live] (https://budgeting-app-angelinaebreo.netlify.app)
+[Live](https://budgeting-app-angelinaebreo.netlify.app)
 
 
 
