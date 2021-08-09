@@ -52,7 +52,6 @@ function TransactionDetails(props) {
                 style: "currency",
                 currency: "USD",
               })} */}
-
               {transaction.amount}
             </td>
 

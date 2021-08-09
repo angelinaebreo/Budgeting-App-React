@@ -32,7 +32,6 @@ export default function TransactionEditForm(props) {
 
   const handleTextChange = (event) => {
     setTransaction({ ...transaction, [event.target.id]: event.target.value });
-    console.log(transaction);
   };
 
   const handleNumberChange = (event) => {
